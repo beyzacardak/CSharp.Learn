@@ -28,7 +28,6 @@ namespace CSharp.Learn.Namsespace
             char c = 'c';
 
             c = s[0];
-
         }
     }
 }
