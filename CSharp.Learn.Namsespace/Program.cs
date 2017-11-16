@@ -28,6 +28,14 @@ namespace CSharp.Learn.Namsespace
             char c = 'c';
 
             c = s[0];
+
+            var di = new Diziler();
+            di.Dizi();
+
+            var so = new StringOperations();
+            //so.StringMetodlari();
+            //so.GirilenMetinBosMuKontroluYap();
+            //so.EnUzunKelimeyiBul();
         }
     }
 }
