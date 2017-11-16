@@ -29,13 +29,8 @@ namespace CSharp.Learn.Namsespace
 
             c = s[0];
 
-            var di = new Diziler();
-            di.Dizi();
-
             var so = new StringOperations();
-            //so.StringMetodlari();
-            //so.GirilenMetinBosMuKontroluYap();
-            //so.EnUzunKelimeyiBul();
+            so.KelimeSayilariniBul(Console.ReadLine());
         }
     }
 }
