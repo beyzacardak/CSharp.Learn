@@ -17,7 +17,7 @@ namespace KafeYonetim.Data
             return connection;
         }
 
-        public static void KafeBilgisiniYazdir()
+        public static Kafe AktifKafeyiGetir()
         {
             using (var connection = CreateConnection())
             {
@@ -26,8 +26,12 @@ namespace KafeYonetim.Data
                 using (var result = command.ExecuteReader())
                 {
                     result.Read();
-                    Console.WriteLine($"Kafe Adı: {result["Ad"]}");
-                    Console.WriteLine($"Kafe Durumu: {result["Durum"]}");
+                    var kafe = new Kafe((int)result["Id"], result["Ad"].ToString(), result["AcilisSaati"].ToString(), result["KapanisSaati"].ToString());
+                    kafe.Durum=(KafeDurum)result["Durum"];
+
+                    return kafe;
+
+             
                 }
             }
 
@@ -74,15 +78,15 @@ namespace KafeYonetim.Data
 
         }
 
-        public static int MasaSayisi()
-        {
-            using (var connection = CreateConnection())
-            {
-                var command = new SqlCommand("SELECT COUNT(*) FROM Masa", connection);
+        //public static int MasaSayisi()
+        //{
+        //    using (var connection = CreateConnection())
+        //    {
+        //        var command = new SqlCommand("SELECT COUNT(*) FROM Masa", connection);
 
-                return Convert.ToInt32(command.ExecuteScalar());
-            }
-        }
+        //        return Convert.ToInt32(command.ExecuteScalar());
+        //    }
+        //}
 
         public static List<Urun> UrunListesiniGetir()
         {
@@ -289,5 +293,22 @@ namespace KafeYonetim.Data
                 return result;
             }
         }
+        public static Tuple<int, int> MasaSayisi()
+        {
+            using (var connection = CreateConnection())
+            {
+                var command = new SqlCommand("select count(*), sum(KisiSayisi) from Masa", connection);
+
+                var reader= command.ExecuteReader();
+
+                reader.Read();
+                var tuple = new Tuple<int, int>((int)reader["MasaSAyisi"],(int)reader["KisiSayisi"]);
+
+                return tuple;
+
+            }
+        }
+
     }
+    
 }
