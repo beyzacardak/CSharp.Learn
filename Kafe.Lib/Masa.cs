@@ -10,11 +10,14 @@ namespace KafeYonetim.Lib
             Kafe = kafe;
         }
 
+
+
         public string MasaNo { get; private set; }
         public Siparis Siparis { get; set; }
         public MasaDurum Durum { get; set; }
         public Garson Garson { get; set; }
         public Kafe Kafe { get; private set; }
+        public byte KisiSayisi { get; set; }
 
         public void GarsonCagir()
         {
