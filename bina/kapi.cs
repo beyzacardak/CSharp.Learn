@@ -4,17 +4,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace bina
+namespace Bina.Kapi
 {
-    class kapi
+    //Base Class
+    //Super Class
+    //DaireKapisi ve BinaKapisi class'ları yazılırken bu class'tan türetildikleri için Kapi class'i DaireKapisi ve BinaKapisi İçin Base/Super class'tır.
+    public class Kapi
     {
-        public string govde;
-        public string kulp;
-        public string kilit;
+        public string Govde;
+        public string Kulp;
+        public Kilit Kilit;
 
-        public void kapiyiAc()
+        public virtual void KapiyiAc()
         {
-            Console.WriteLine("kapı açıldı");
+            Console.WriteLine("Kapı açıldı.");
+        }
+
+        public void KapiyiKapat()
+        {
+            Console.WriteLine("Kapı kapandı.");
+        }
+
+        public virtual void KapidanGir(string kim)
+        {
+            Console.WriteLine($"{kim} kapıdan girdi.");
         }
     }
 }

@@ -4,9 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace bina
+namespace Bina
 {
-    class pencere
+    public class Pencere
     {
+        public string Cerceve;
+        public string Cam;
+        public string Kulp;
+
+        public void PencereyiAc()
+        {
+            Console.WriteLine("Pencere açıldı.");
+        }
+
+        public void PencereyiKapat()
+        {
+            Console.WriteLine("Pencere kapandı.");
+        }
     }
 }

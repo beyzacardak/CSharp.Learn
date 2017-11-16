@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E69A5459-9956-4E1E-BBFD-8CE70CE6D9EB}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>bina</RootNamespace>
-    <AssemblyName>bina</AssemblyName>
+    <ProjectGuid>{E055ECB2-C4B4-4A90-BBC4-0A29FECC6A31}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Bina</RootNamespace>
+    <AssemblyName>Bina</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -42,13 +40,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="bina.cs" />
-    <Compile Include="kapi.cs" />
-    <Compile Include="pencere.cs" />
+    <Compile Include="Banyo.cs" />
+    <Compile Include="BinaModel.cs" />
+    <Compile Include="Daire.cs" />
+    <Compile Include="Ebatlar.cs" />
+    <Compile Include="BinaKapisi.cs" />
+    <Compile Include="DaireKapisi.cs" />
+    <Compile Include="GelismisDaireKapisi.cs" />
+    <Compile Include="GenelAmacliOda.cs" />
+    <Compile Include="Kapi.cs" />
+    <Compile Include="Kilit.cs" />
+    <Compile Include="Mutfak.cs" />
+    <Compile Include="Oda.cs" />
+    <Compile Include="OdaKapisi.cs" />
+    <Compile Include="Pencere.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
