@@ -29,8 +29,11 @@ namespace CSharp.Learn.Namsespace
 
             c = s[0];
 
+<<<<<<<<< Temporary merge branch 1
+=========
             var so = new StringOperations();
             so.KelimeSayilariniBul(Console.ReadLine());
+>>>>>>>>> Temporary merge branch 2
         }
     }
 }
