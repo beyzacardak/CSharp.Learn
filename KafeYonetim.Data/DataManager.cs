@@ -35,7 +35,7 @@ namespace KafeYonetim.Data
                 }
             }
 
-            Console.ReadLine();
+           
         }
 
         public static void KafeAdiniGetir()
@@ -306,6 +306,13 @@ namespace KafeYonetim.Data
 
                 return tuple;
 
+            }
+        }
+        public static Calisan CalisanEkle()
+        {
+            using (var connection = CreateConnection())
+            {
+                var command = new SqlCommand("insert into Calisan()");
             }
         }
 
