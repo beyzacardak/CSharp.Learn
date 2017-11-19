@@ -43,6 +43,9 @@ namespace KafeYonetim.Sunum.AnaUygulama
                 Console.WriteLine("5. Ürün Sil");
                 Console.WriteLine("6. Masa Ekle");
                 Console.WriteLine("7. Masa Sayısı");
+                Console.WriteLine("8. Garson Ekle");
+                Console.WriteLine("9. Asçı Ekle");
+                Console.WriteLine("10. Çalışanları Listele");
                 Console.WriteLine();
                 Console.Write("Bir seçim yapınız (çıkmak için H harfine basınız): ");
                 var secim = Console.ReadLine();
@@ -56,6 +59,9 @@ namespace KafeYonetim.Sunum.AnaUygulama
                     case "5": UrunSil(); break;
                     case "6": MasaEkle(); break;
                     case "7": MasaSayisi(); break;
+                    case "8": GarsonEkle(); break;
+                    case "9": AsciEkle(); break;
+                    case "10": CalisanListesiniGetir(); break;
                     case "h": return;
                     default:
                         break;
@@ -65,12 +71,65 @@ namespace KafeYonetim.Sunum.AnaUygulama
 
         }
 
+        private static void CalisanListesiniGetir()
+        {
+            Console.Clear();
+
+            List<Calisan> liste = DataManager.CalisanListesiniGetir();
+
+            Console.Write("Id".PadRight(5));
+            Console.Write("İsim".PadRight(30));
+            Console.Write("İşe Giriş Tarihi".PadRight(20));
+            Console.WriteLine("Görev");
+            Console.WriteLine("".PadRight(60, '='));
+
+            foreach (var calisan in liste)
+            {
+                Console.WriteLine($"{calisan.Id.ToString().PadRight(5)}{calisan.Isim.PadRight(30)}{calisan.IseGirisTarihi.ToString("yyyy.MMMM.dddd").PadRight(20)}{calisan.Gorev.GorevAdi}");
+            }
+
+            Console.ReadLine();
+        }
+
+        private static void AsciEkle()
+        {
+            Console.Clear();
+
+            Console.Write("Isim: ");
+            string isim = Console.ReadLine();
+
+            var asci = new Asci(isim, DateTime.Now, DataManager.AktifKafeyiGetir());
+            asci.Puan = 0;
+
+            int id = DataManager.AsciEkle(asci);
+
+            Console.WriteLine($"{id} id'si ile aşçı eklendi.");
+
+            Console.ReadLine();
+        }
+
+        private static void GarsonEkle()
+        {
+            Console.Clear();
+
+            Console.Write("Isim: ");
+            string isim = Console.ReadLine();
+
+            var garson = new Garson(isim, DateTime.Now, DataManager.AktifKafeyiGetir());
+
+            DataManager.GarsonEkle(garson);
+
+            Console.ReadLine();
+
+        }
+
         private static void MasaSayisi()
         {
             Console.Clear();
 
-            Console.WriteLine($"Toplam {DataManager.MasaSayisi()} adet masa var.");
-            
+            var result = DataManager.MasaSayisi();
+
+            Console.WriteLine($"{result.Item1} adet masada {result.Item2} kişilik kapasiteniz var.");
             Console.ReadLine();
         }
 
@@ -166,11 +225,8 @@ namespace KafeYonetim.Sunum.AnaUygulama
                 Console.WriteLine("Ürün eklenirken bir hata oluştu...");
             }
 
-
             Console.ReadLine();
         }
-
-        
 
         public static void MasaEkle()
         {
@@ -180,16 +236,15 @@ namespace KafeYonetim.Sunum.AnaUygulama
             Console.Write("Masa No: ");
             string masaNo = Console.ReadLine();
             var yeniMasa = new Masa(masaNo, DataManager.AktifKafeyiGetir());
-
+            yeniMasa.Durum = MasaDurum.Bos;
             Console.Write("Kişi Sayısı: ");
-            yeniMasa.KisiSayisi = byte.Parse( Console.ReadLine());
+            yeniMasa.KisiSayisi = byte.Parse(Console.ReadLine());
 
-            int id =DataManager.MasaEkle(yeniMasa);
+            int id = DataManager.MasaEkle(yeniMasa);
 
             Console.WriteLine($"{id} ID'li masa eklendi");
 
             Console.ReadLine();
         }
-        
     }
 }
