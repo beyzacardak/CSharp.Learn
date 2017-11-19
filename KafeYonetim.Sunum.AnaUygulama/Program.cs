@@ -45,7 +45,8 @@ namespace KafeYonetim.Sunum.AnaUygulama
                 Console.WriteLine("7. Masa Sayısı");
                 Console.WriteLine("8. Garson Ekle");
                 Console.WriteLine("9. Asçı Ekle");
-                Console.WriteLine("10. Çalışanları Listele");
+                Console.WriteLine("10.Bulaşıkçı Ekle");
+                Console.WriteLine("11. Çalışanları Listele");
                 Console.WriteLine();
                 Console.Write("Bir seçim yapınız (çıkmak için H harfine basınız): ");
                 var secim = Console.ReadLine();
@@ -60,8 +61,9 @@ namespace KafeYonetim.Sunum.AnaUygulama
                     case "6": MasaEkle(); break;
                     case "7": MasaSayisi(); break;
                     case "8": GarsonEkle(); break;
-                    case "9": AsciEkle(); break;
-                    case "10": CalisanListesiniGetir(); break;
+                    case "9": BulasikciEkle(); break;
+                    case "10": BulasikciEkle(); break;
+                    case "11": CalisanListesiniGetir(); break;
                     case "h": return;
                     default:
                         break;
@@ -91,19 +93,19 @@ namespace KafeYonetim.Sunum.AnaUygulama
             Console.ReadLine();
         }
 
-        private static void AsciEkle()
+        private static void BulasikciEkle()
         {
             Console.Clear();
 
             Console.Write("Isim: ");
             string isim = Console.ReadLine();
 
-            var asci = new Asci(isim, DateTime.Now, DataManager.AktifKafeyiGetir());
-            asci.Puan = 0;
+            var bulasikci = new Bulasikci(isim, DateTime.Now, DataManager.AktifKafeyiGetir());
+            
 
-            int id = DataManager.AsciEkle(asci);
+            DataManager.BulasikciEkle(bulasikci);
 
-            Console.WriteLine($"{id} id'si ile aşçı eklendi.");
+            Console.WriteLine(" Bulaşıkçı eklendi.");
 
             Console.ReadLine();
         }

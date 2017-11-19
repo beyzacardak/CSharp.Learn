@@ -364,5 +364,27 @@ namespace KafeYonetim.Data
                 return result;
             }
         }
+        public static int BulasikciEkle(Bulasikci bulasikci)
+        {
+            using (var connection = CreateConnection())
+            {
+                var commandGarson = new SqlCommand($@" 
+                            INSERT INTO Bulasikci (MesaiUcreti) VALUES (@MesaiUcreti); 
+                            DECLARE @id int;
+                            SET @id= scope_identity();
+                            INSERT INTO Calisan (Isim, IseGirisTarihi, MesaideMi, KafeId, Durum, GorevId, GorevTabloId) VALUES (@Isim, @IseGirisTarihi, @MesaideMi, @KafeId, @Durum, @GorevId, @id); SELECT scope_identity()", connection);
+                commandGarson.Parameters.AddWithValue("@bahsis", bulasikci.MesaiUcreti);
+                commandGarson.Parameters.AddWithValue("@Isim", bulasikci.Isim);
+                commandGarson.Parameters.AddWithValue("@IseGirisTarihi", bulasikci.IseGirisTarihi);
+                commandGarson.Parameters.AddWithValue("@MesaideMi", bulasikci.MesaideMi);
+                commandGarson.Parameters.AddWithValue("@KafeId", bulasikci.Kafe.Id);
+                commandGarson.Parameters.AddWithValue("@Durum", bulasikci.Durum);
+                commandGarson.Parameters.AddWithValue("@GorevId", 3);
+
+                var result = Convert.ToInt32(commandGarson.ExecuteScalar());
+
+                return result;
+            }
+        }
     }
 }
